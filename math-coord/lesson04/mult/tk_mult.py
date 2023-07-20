@@ -29,14 +29,12 @@ def border2(x,y):
         out = 1
     return out
 
-for x in range(400):
-    for y in range(400):
-        if set1(x,y) & set2(x,y):
-            c.create_line(x,y,x,1+y, fill = 'red') 
-     
-        if border1(x,y) or border2(x,y):
-            c.create_line(x,y,x,1+y, fill = 'black')
+def border():
+    for x in range(400):
+        for y in range(400):
+            if border1(x,y) or border2(x,y):
+                c.create_line(x,y,x,1+y, fill = 'black')
 
 
 
-root.mainloop()
+# root.mainloop()
