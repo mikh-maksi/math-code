@@ -8,6 +8,7 @@ model = LpProblem(name='Field Problem', sense=LpMaximize)
 # Initialize the variables
 x = LpVariable(name="x", lowBound=0, upBound=100)
 y = LpVariable(name="y", lowBound=0, upBound=100)
+x = LpVariable(name="x", lowBound=20, upBound=50)
 
 
 # Add the constraints to the model. Use += to append expressions to the model

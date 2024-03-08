@@ -2,10 +2,14 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
-dist = stats.norm(loc=15, scale=0.5) # нормальний розподіл
-#dist=stats.uniform(loc=14,scale=2) # рівномірний розподіл (для порівняння)
+# dist = stats.norm(loc=15, scale=0.5) # нормальний розподіл
+# dist=stats.uniform(loc=14,scale=2) # рівномірний розподіл (для порівняння)
+# dist=stats.alpha(2) # рівномірний розподіл (для порівняння)
+# dist=stats.expon(loc=0, scale=5) # рівномірний розподіл (для порівняння)
+dist=stats.bernoulli(0.3) # рівномірний розподіл (для порівняння)
 
-N=1000 # розмір вибірки
+
+N=10000 # розмір вибірки
 X=dist.rvs(size=N) # випадкова вибірка з цього розподілу
 
 mean,std = stats.norm.fit(X) # підігнати криву норм. розп. і отримати її параметри
