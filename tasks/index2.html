@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Inputs with Sum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 20px;
+            margin-right: 10px;
+            vertical-align: top;
+        }
+        input {
+            border: 1px solid #000;
+            width: 150px;
+            height: 20px;
+        }
+        .result-label {
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-group">
+        <label for="inputA">A</label>
+        <input type="number" id="inputA">
+    </div>
+
+    <div class="form-group">
+        <label for="inputB">B</label>
+        <input type="number" id="inputB">
+    </div>
+
+    <span class="result-label">Result</span>
+    <p id="sumResult"></p>
+
+    <script>
+        const inputA = document.getElementById('inputA');
+        const inputB = document.getElementById('inputB');
+        const sumResult = document.getElementById('sumResult');
+
+        inputB.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const a = parseFloat(inputA.value) || 0;
+                const b = parseFloat(inputB.value) || 0;
+                const sum = a + b;
+                sumResult.textContent = 'Sum: ' + sum;
+            }
+        });
+    </script>
+
+</body>
+</html>

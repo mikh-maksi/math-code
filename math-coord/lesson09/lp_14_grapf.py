@@ -4,7 +4,7 @@ from scipy.optimize import linprog
 
 start = time.time()
 
-c = [-4 , -2, -6]  # Цільова функція - на мінімум
+c = [-4 , -2, -6]  # The objective function is at a minimum
 A_ub = [
     [12, 6,2],
     [12, 24,18],
@@ -12,14 +12,14 @@ A_ub = [
     [-1, 0,0],
     [0,-1, 0],
     [0,0, -1],
-]  # Коефіцієнти при нерівностях
-b_ub = [160,360,720,0,0,0]  # Результати при нерівностях
-# A_eq = [[1, 1, 1]]  # Кофеціенти при рівняння функциї обмеження
-# b_eq = [1]  # Результат при рівняння функциї обмеження
+]  # Coefficients with inequalities
+b_ub = [160,360,720,0,0,0]  # Results for inequalities
+# A_eq = [[1, 1, 1]]  # Coefficient in the constraint function equation
+# b_eq = [1]  # The result of the constraint function equation
 
-# print(linprog(c, A_ub, b_ub,A_eq,b_eq))  # Оптимізація
-print(linprog(c, A_ub, b_ub))  # Оптимізація
+# print(linprog(c, A_ub, b_ub,A_eq,b_eq))  # Optimisation
+print(linprog(c, A_ub, b_ub))  # Optimisation
 
 stop = time.time()
-print("Час :")
+print("Time :")
 print(stop - start)

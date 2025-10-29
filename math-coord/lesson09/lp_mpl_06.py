@@ -44,7 +44,7 @@ plt.scatter(0.8, 0.2, marker='^')
 plt.scatter(0, 0, marker='^')
 
 plt.arrow (x= 0 , y= 0 , dx=0.2 , dy= 0.2 , facecolor= 'red',edgecolor= 'none', width= .018 )
-plt.annotate('Цільова функція', xy = (0.5, 0.5)) 
+plt.annotate('Objective', xy = (0.5, 0.5)) 
 
 # виводимо легенду
 plt.legend(fontsize=14)
