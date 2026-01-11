@@ -14,7 +14,9 @@ Xbasis_i = Xbasis_i.astype(int)
 # A_ij = np.array([[7,3,1,0,0],[9,2,0,1,0],[7,1,0,0,1]])
 # b_i = np.array([[1533],[1044],[371]])
 # c_i = np.array([5,2,0,0,0])
+print(Xbasis_i)
 # Xbasis_i = np.array([[3],[4],[5]])
+print(Xbasis_i)
 print("-------***---------")
 Z_0 = 0
 
@@ -55,34 +57,27 @@ while (check_simplex_next_f(c_i,Xbasis_i,A_ij) and iteration<=max_iteration):
     # Для поточного базису
     # 3. delta_i
     # Обраховуємо дельту: значення елементу цільової функції та коефіцієнту при змінній.
+    
     delta_i=[]
     for i in range(len(A_ij[0])):
         delta_i.append(float(Z_i[i]-c_i[i]))
-
     print(f"delta_i = {delta_i}")
-    # 4. За delta_i знаходимо стовпчик (i)
+    # За delta_i знаходимо стовпчик (i)
     basis_i = min_n(delta_i)[1]
-    
     print(f"basis_i = {basis_i}")
     # -----------------fi_i, basis_j
-    # 5. Знаходимо fi_i, як відношення 
     A_T_ij_basis=np.transpose(A_ij)[basis_i]
     fi_i = np.array([])
     for i in range(len(A_T_ij_basis)):
         fi_i = np.append(fi_i,b_i[i]/A_T_ij_basis[i])
     print(f"fi_i = {fi_i}")
-
-    # 6. Значення ведучого стовпчика як мінімальне значення fi+i
     basis_j=min_n(fi_i)[1]
     print(f"basis_j = {basis_j}")
-    # --------- matrix recumputing (pivot)
+    # --------- matrix recumputing
     # ---------- take base element
-    # 7. Отримуємо значення ведучого елементу
     basis_element = A_ij[basis_j][basis_i]
     # Вивдення LaTex
-    # 8. Вивеодмио LaTex
     simplex_out_fnc("TASK02",A_ij,b_i,Xbasis_i,c_i,Z_0,delta_i,fi_i,basis_j,basis_i)
-    # 9. Переводимо чисельні речі в словник і зберігаємо словник до CSV
     # Зробити CSV
 
 
@@ -91,17 +86,14 @@ while (check_simplex_next_f(c_i,Xbasis_i,A_ij) and iteration<=max_iteration):
     # print(b_i)
     # print(f"b_i[basis_j] = {b_i[basis_j]}")
     # print(f"{basis_j} {basis_element} b_i = {b_i} b_i[basis_j]= {b_i[basis_j]}")
-    # 10. Перераховуємо стовпчик b_i
     b_i[basis_j]=b_i[basis_j]/basis_element
-    
-    # 11. Перераховуємо базовий рядок
+
     base_string = []
     for j in range(len(A_ij[basis_j])):
         el = A_ij[basis_j][j]/basis_element
         base_string.append(el)
         A_ij[basis_j][j]=el
 
-    # 12. Перераховуємо елементи симплекс-таблиці, які не є базовим рядком
     # print(f"b_i[basis_j] = {b_i[basis_j]}")
     # ---------- non base string
     for i in range(len(A_ij)):
@@ -112,35 +104,30 @@ while (check_simplex_next_f(c_i,Xbasis_i,A_ij) and iteration<=max_iteration):
             for j in range(len(A_ij[0])):
                 A_ij[i][j] = A_ij[i][j] - k*base_string[j]
 
-
     # --------------- Change basis (Xbasis_i, C)
 
     # Як замінити Xbasis_i 
     # print(Xbasis_i)
-    # 13. Змінюємо елементи, що входять до базису.
     Xbasis_i[basis_j]=basis_i+1
     # print(A_ij)
-    # 14. Змінюємо C базисних елементів відпоівдно до того, які елементи увійшли 
     Cbasis_i = []
+
     for i in range(len(Xbasis_i)):
         Cbasis_i.append(float(c_i[Xbasis_i[i][0]-1]))
-    # 15. Обраховуємо значення цільової функції
     Z_0=0
+
     for i in range(len(Xbasis_i)):
         Z_0+=b_i[i]*Cbasis_i[i]
-    # 16. Виводимо значення до консолі
+
     print(f"b_i = {b_i} Xbasis_i = {Xbasis_i} Cbasis_i = {Cbasis_i} Z_0 = {Z_0}")
     print("---------------")
     # simplex_out_fnc("TASK02",A_ij,b_i,Xbasis_i,c_i,Z_0,delta_i,fi_i)
 
-# як перевести матрицю в словник із заголовками типу x1,x2,x3,x4,x5,...
-
-# !1. Робимо прикинцеві обрахунки
 Cbasis_i = []
 for i in range(len(Xbasis_i)):
     Cbasis_i.append(float(c_i[Xbasis_i[i][0]-1]))
 
-# !2. Z_i
+# 2. Z_i
 Z_i = []
 A_T_ij=np.transpose(A_ij)
 # print(A_T_ij)
